@@ -58,15 +58,15 @@ func (c *ctx) addEncoder(t reflect2.Type, v ValEncoder) {
 }
 
 func (c *ctx) getDecoder(t reflect2.Type) ValDecoder {
-	encoder, found := c.encoders.Load(t)
+	decoder, found := c.decoders.Load(t)
 	if found {
-		return encoder.(ValDecoder)
+		return decoder.(ValDecoder)
 	}
 	return nil
 }
 
 func (c *ctx) addDecoder(t reflect2.Type, v ValDecoder) {
-	c.encoders.Store(t, v)
+	c.decoders.Store(t, v)
 }
 
 func (b *ctx) caseSensitive() bool {
